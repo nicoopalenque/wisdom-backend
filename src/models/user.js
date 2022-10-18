@@ -58,6 +58,10 @@ const UserSchema = Schema({
     status: {
         type: Boolean,
         required: false,
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
     }
 });
 

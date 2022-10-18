@@ -15,8 +15,8 @@ const getUser = async(limit, since, query) => {
   }
 };
 
-const getUserById = async(id) => {
-  const user = User.findById(id);
+const getUserById = async (id) => {
+  const user = await User.findById(id);
   return user;
 }
 

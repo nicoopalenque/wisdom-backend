@@ -1,10 +1,5 @@
-const Role = require('../models/role');
+const lesson = require('../models/lesson');
 const User = require('../models/user');
-
-const validRole = async(role = '') => {
-    const existRole = await Role.findOne({ role });
-    if (!existRole) throw new Error(`Rol ${role} is not registed in DB`);
-}
 
 const validEmail = async(email = '') => {
     const existEmail = await User.findOne({ email });
@@ -16,8 +11,19 @@ const validUserById = async(id = '') => {
     if (!userExist) throw new Error(`ID ${id} dont exist`)
 } 
 
+const validDni = async (dni = '') => {
+    const existDni = await User.findOne({ dni });
+    if (existDni) throw new Error(`DNI ${dni}, already exist`);
+} 
+
+const validLessonById = async (id = '') => {
+    const existLesson = await lesson.findById(id);
+    if(!existLesson) throw new Error(`ID ${id} dont exist`);
+}
+
 module.exports = {
-    validRole,
+    validDni,
     validEmail,
-    validUserById
+    validUserById,
+    validLessonById
 }

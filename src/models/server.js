@@ -9,6 +9,7 @@ class Server{
         this.port = process.env.PORT;
         this.usersPath = '/api/users';
         this.signup = '/api/auth';
+        this.lesson = '/api/lesson'
 
         // Connect data base
         this.connectDB();
@@ -36,6 +37,7 @@ class Server{
     routes(){
         this.app.use(this.usersPath, require('../routes/user'))
         this.app.use(this.signup, require('../routes/auth'))
+        this.app.use(this.lesson, require('../routes/lesson'))
     }
 
     listen(){
