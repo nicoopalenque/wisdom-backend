@@ -1,5 +1,6 @@
-const lesson = require('../models/lesson');
+const Lesson = require('../models/lesson');
 const User = require('../models/user');
+const Course = require('../models/course');
 
 const validEmail = async(email = '') => {
     const existEmail = await User.findOne({ email });
@@ -17,13 +18,19 @@ const validDni = async (dni = '') => {
 } 
 
 const validLessonById = async (id = '') => {
-    const existLesson = await lesson.findById(id);
+    const existLesson = await Lesson.findById(id);
     if(!existLesson) throw new Error(`ID ${id} dont exist`);
+}
+
+const validCourseById = async (id = '') => {
+    const existCourse = await Course.findById(id);
+    if(!existCourse) throw new Error(`ID ${id} dont exist`);
 }
 
 module.exports = {
     validDni,
     validEmail,
     validUserById,
-    validLessonById
+    validLessonById,
+    validCourseById
 }
