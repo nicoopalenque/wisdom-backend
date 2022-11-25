@@ -27,16 +27,14 @@ class Server{
     }
 
     middlewares(){
+
+        const corsOptions = {
+            origin: 'http://localhost:3000',
+            optionsSuccessStatus: 200
+        }
         
         // Cors
-        this.app.use(cors());
-
-        this.app.use((req, res, next) => {
-            res.setHeader('Access-Control-Allow-Origin','*');
-            res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
-            res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
-            next();
-        });
+        this.app.use(cors(corsOptions));
         
         // JSON
         this.app.use(express.json());
