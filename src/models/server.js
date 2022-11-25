@@ -27,14 +27,23 @@ class Server{
     }
 
     middlewares(){
-
-        const corsOptions = {
-            origin: 'http://localhost:3000',
-            optionsSuccessStatus: 200
+        const allowCrossDomain = function(req, res, next) {
+            res.header('Access-Control-Allow-Origin', "*");
+            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.header('Access-Control-Allow-Headers', 'Content-Type');
+            next();
         }
-        
-        // Cors
-        this.app.use(cors(corsOptions));
+        app.configure(function() {
+            app.use(allowCrossDomain);
+            //some other code
+        });   
+        // const corsOptions = {
+        //     origin: 'http://localhost:3000',
+        //     optionsSuccessStatus: 200
+        // }
+
+        // // Cors
+        // this.app.use(cors(corsOptions));
         
         // JSON
         this.app.use(express.json());
