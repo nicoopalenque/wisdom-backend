@@ -28,15 +28,12 @@ class Server{
 
     middlewares(){
         const allowCrossDomain = function(req, res, next) {
-            res.header('Access-Control-Allow-Origin', "*");
+            res.header('Access-Control-Allow-Origin', "http://localhost:3000");
             res.header('Access-Control-Allow-Methods', '*');
             res.header('Access-Control-Allow-Headers', '*');
             next();
         }
-        app.configure(function() {
-            app.use(allowCrossDomain);
-            //some other code
-        });   
+        this.app.use(allowCrossDomain);
         // const corsOptions = {
         //     origin: 'http://localhost:3000',
         //     optionsSuccessStatus: 200
