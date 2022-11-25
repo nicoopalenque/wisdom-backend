@@ -27,14 +27,9 @@ class Server{
     }
 
     middlewares(){
-        const corsOptions = {
-            origin(origin, callback) {
-              callback(null, true);
-            },
-            credentials: true
-          };
+        
         // Cors
-        this.app.use(cors(corsOptions));
+        this.app.use(cors());
 
         this.app.use((req, res, next) => {
             res.setHeader('Access-Control-Allow-Origin','*');
